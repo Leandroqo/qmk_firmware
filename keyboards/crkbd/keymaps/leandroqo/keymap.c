@@ -345,6 +345,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       }
       return false;
+    case RAISE:
       if (record->event.pressed) {
         layer_on(_RAISE);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
@@ -379,7 +380,7 @@ void rgb_matrix_indicators_user(void) {
   switch(biton32(layer_state)) {
     case _LOWER:
       for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-        rgb_matrix_set_color(i, 60, 174, 163);
+        rgb_matrix_set_color(i, 60, 255, 100);
       }
       break;
     case _RAISE:
@@ -389,13 +390,13 @@ void rgb_matrix_indicators_user(void) {
       break;
     case _ADJUST:
       for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-        rgb_matrix_set_color(i, 32, 99, 155);
+        rgb_matrix_set_color(i, 255, 30, 59);
       }
       break;
     default:
       if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
         for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-          rgb_matrix_set_color(i, 237, 85, 59);
+          rgb_matrix_set_color(i, 255, 255, 0);
         }
       }
       break;
