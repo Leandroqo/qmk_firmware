@@ -34,7 +34,12 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   RGBRST,
-  KC_RACL // right alt / colon
+};
+
+enum {
+  TD_CAPCTL,
+  TD_CED, //cedilha
+  TD_RACL
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -42,11 +47,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,---------------------------------------------.
      KC_TAB,  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,                   KC_Y,  KC_U,  KC_I,  KC_O,  KC_P,  KC_BSPC,
   //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
-    KC_LCTL,  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,                   KC_H,  KC_J,  KC_K,  KC_L, KC_SCLN, KC_QUOT,
+  TD(TD_CAPCTL),  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,               KC_H,  KC_J,  KC_K,  KC_L, KC_SCLN, KC_QUOT,
   //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
-    KC_LSFT,  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                   KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH, KC_LGUI,
+    KC_LSFT,  KC_Z,  KC_X,  TD(TD_CED),  KC_V,  KC_B,                   KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH, KC_LGUI,
   //|------+------+------+------+------+------+------|  |------+------+------+-------+------+-------+--------|
-                               KC_LGESC,LOWER, KC_SPC,   RSFT_T(KC_ENT), RAISE, KC_RACL
+                               KC_LGESC,LOWER, KC_SPC,   RSFT_T(KC_ENT), RAISE, TD(TD_RACL)
                               //`--------------------'  `--------------------'
   ),
 
@@ -85,6 +90,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT
                               //`--------------------'  `--------------------'
   )
+};
+
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_CAPCTL] = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, KC_CAPS),
+  [TD_CED] = ACTION_TAP_DANCE_DOUBLE(KC_C, RALT(KC_C)),
+  [TD_RACL] = ACTION_TAP_DANCE_DOUBLE(KC_RALT,LSFT(KC_SCLN))
 };
 
 int RGB_current_mode;
@@ -322,7 +334,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
     // set_timelog();
   }
-  static uint16_t my_colon_timer;
 
   switch (keycode) {
     case LOWER:
@@ -334,7 +345,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       }
       return false;
-    case RAISE:
       if (record->event.pressed) {
         layer_on(_RAISE);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
@@ -350,25 +360,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_off(_ADJUST);
         }
         return false;
-    case KC_RACL:
-        if (record->event.pressed) {
-          my_colon_timer = timer_read();
-          register_code(KC_RALT);
-        } else {
-          unregister_code(KC_RALT);
-          if (timer_elapsed(my_colon_timer) < TAPPING_TERM) {
-            SEND_STRING(":"); // Change the character(s) to be sent on tap here
-          }
-        }
-        return false;
     case RGBRST:
-      #ifdef RGBLIGHT_ENABLE
-        if (record->event.pressed) {
-          eeconfig_update_rgblight_default();
-          rgblight_enable();
-          RGB_current_mode = rgblight_config.mode;
-        }
-      #endif
       #ifdef RGB_MATRIX_ENABLE
         if (record->event.pressed) {
           eeconfig_update_rgb_matrix_default();
@@ -381,6 +373,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 #ifdef RGB_MATRIX_ENABLE
+
+void rgb_matrix_indicators_user(void) {
+  #ifdef RGB_MATRIX_ENABLE
+  switch(biton32(layer_state)) {
+    case _LOWER:
+      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+        rgb_matrix_set_color(i, 60, 174, 163);
+      }
+      break;
+    case _RAISE:
+      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+        rgb_matrix_set_color(i, 32, 99, 155);
+      }
+      break;
+    case _ADJUST:
+      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+        rgb_matrix_set_color(i, 32, 99, 155);
+      }
+      break;
+    default:
+      if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
+        for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+          rgb_matrix_set_color(i, 237, 85, 59);
+        }
+      }
+      break;
+  }
+  #endif
+}
 
 void suspend_power_down_keymap(void) {
     rgb_matrix_set_suspend_state(true);
