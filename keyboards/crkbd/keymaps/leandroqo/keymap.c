@@ -27,6 +27,7 @@ enum layers {
 // Custom keycodes for layer keys
 // Dual function escape with left command
 #define KC_LGESC LGUI_T(KC_ESC)
+#define L_ESC LT(_LOWER, KC_ESC)
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -51,8 +52,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
     KC_LSFT,  KC_Z,  KC_X,  TD(TD_CED),  KC_V,  KC_B,             KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH, KC_LGUI,
   //|------+------+------+------+------+------+------|  |------+------+------+-------+------+-------+--------|
-                               KC_LGESC,LOWER, KC_SPC,   RSFT_T(KC_ENT), RAISE, TD(TD_RACL)
-                              //`--------------------'  `--------------------'
+                              KC_LGUI, L_ESC, KC_SPC,   RSFT_T(KC_ENT), RAISE, TD(TD_RACL)
+                             //`--------------------'  `--------------------'
   ),
 
   [_LOWER] = LAYOUT(
@@ -63,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+-------+-------+-------+-------|                |------+------+------+------+------+------|
     KC_LSFT,KC_VOLD,KC_BTN2,KC_WH_D,KC_WH_U,KC_BTN1,                KC_HOME,KC_PGDN,KC_PGUP,KC_END,KC_NO,KC_NO,
   //|------+------+-------+-------+-------+-------+------|  |------+------+------+------+------+------+------|
-                                    KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT
+                                    KC_LGUI, L_ESC,KC_SPC,   KC_ENT, RAISE,KC_RALT
                                   //`--------------------'  `--------------------'
   ),
 
@@ -75,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
     KC_LSFT, KC_F6, KC_F7, KC_F8, KC_F9,KC_F10,                KC_UNDS,KC_PLUS,KC_LBRC,KC_RBRC,KC_BSLS,KC_TILD,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT
+                                KC_LGUI, L_ESC,KC_SPC,   KC_ENT, RAISE,KC_RALT
                               //`--------------------'  `--------------------'
   ),
 
