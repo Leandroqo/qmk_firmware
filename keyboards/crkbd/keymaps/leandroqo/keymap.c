@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
   TD(TD_CAPCTL),  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,               KC_H,  KC_J,  KC_K,  KC_L, KC_SCLN, KC_QUOT,
   //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
-    KC_LSFT,  KC_Z,  KC_X,  TD(TD_CED),  KC_V,  KC_B,             KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH, KC_LGUI,
+    KC_LSFT,  KC_Z,  KC_X,  TD(TD_CED),  KC_V,  KC_B,             KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH, G(KC_SPC),
   //|------+------+------+------+------+------+------|  |------+------+------+-------+------+-------+--------|
                               KC_LGUI, L_ESC, KC_SPC,   RSFT_T(KC_ENT), RAISE, TD(TD_RACL)
                              //`--------------------'  `--------------------'
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_CAPCTL] = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, KC_CAPS),
   [TD_CED] = ACTION_TAP_DANCE_DOUBLE(KC_C, RALT(KC_C)),
-  [TD_RACL] = ACTION_TAP_DANCE_DOUBLE(KC_RALT,LSFT(KC_SCLN))
+  [TD_RACL] = ACTION_TAP_DANCE_DOUBLE(KC_LALT,LSFT(KC_SCLN))
 };
 
 int RGB_current_mode;
