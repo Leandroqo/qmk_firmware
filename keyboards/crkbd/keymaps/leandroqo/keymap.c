@@ -379,21 +379,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void rgb_matrix_indicators_user(void) {
   #ifdef RGB_MATRIX_ENABLE
   switch(biton32(layer_state)) {
-    case _LOWER:
-      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-        rgb_matrix_set_color(i, 60, 255, 100);
-      }
-      break;
-    case _RAISE:
-      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-        rgb_matrix_set_color(i, 32, 99, 155);
-      }
-      break;
-    case _ADJUST:
-      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-        rgb_matrix_set_color(i, 255, 30, 59);
-      }
-      break;
     default:
       if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
         for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
