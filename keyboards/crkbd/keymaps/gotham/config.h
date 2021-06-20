@@ -1,6 +1,7 @@
 #pragma once
 
-#define EE_HANDS
+// #define EE_HANDS
+#define MASTER_LEFT
 #define SPLIT_USB_DETECT
 
 #undef USE_I2C
