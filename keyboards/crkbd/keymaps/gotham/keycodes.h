@@ -31,6 +31,8 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, RGBRST };
 #define FULL RSA(KC_D)
 #define NAV_TL G(S(KC_LBRC))
 #define NAV_TR G(S(KC_RBRC))
+#define NAV_SL C(KC_LEFT)
+#define NAV_SR C(KC_RIGHT)
 #define CMD_9 G(KC_9)
 #define TER_UP C(G(KC_UP))
 #define TER_DW C(G(KC_DOWN))

@@ -189,12 +189,12 @@ void render_keylogger_status(void) {
 void render_prompt(void) {
     bool blink = (timer_read() % 1000) < 500;
 
-    if (layer_state_is(_LOWER)) {
-        oled_write_ln_P(blink ? PSTR("> lo_") : PSTR("> lo "), false);
+    if (layer_state_is(_ADJUST)) {
+        oled_write_ln_P(blink ? PSTR("> ad_") : PSTR("> ad "), false);
     } else if (layer_state_is(_RAISE)) {
         oled_write_ln_P(blink ? PSTR("> hi_") : PSTR("> hi "), false);
-    } else if (layer_state_is(_ADJUST)) {
-        oled_write_ln_P(blink ? PSTR("> aj_") : PSTR("> aj "), false);
+    } else if (layer_state_is(_LOWER)) {
+        oled_write_ln_P(blink ? PSTR("> lo_") : PSTR("> lo "), false);
     } else {
         oled_write_ln_P(blink ? PSTR("> _  ") : PSTR(">    "), false);
     }
@@ -213,6 +213,8 @@ void render_status_secondary(void) {
     render_layer();
 
     oled_write_ln("", false);
+
+    render_keylogger_status();
     oled_write_ln("", false);
     oled_write_ln("", false);
 
