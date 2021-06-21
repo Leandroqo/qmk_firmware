@@ -83,7 +83,7 @@ void render_rgb_status(void) {
 };
 #endif
 
-// 2x1 Ctrl, Alt, Shift, GUI, Mouse
+// 2x1 Ctrl, Alt, Shift, GUI, Mouse, CAPSLOCK
 
 void render_mod_ctrl(void) {
     static const char PROGMEM font_ctrl[3] = {0x93, 0x94, 0};
@@ -188,8 +188,11 @@ void render_keylogger_status(void) {
 
 void render_prompt(void) {
     bool blink = (timer_read() % 1000) < 500;
+    led_t led_state = host_keyboard_led_state();
 
-    if (layer_state_is(_ADJUST)) {
+    if (led_state.caps_lock) {
+        oled_write_ln_P(blink ? PSTR("> cap_") : PSTR("> cap "), false);
+    } else if (layer_state_is(_ADJUST)) {
         oled_write_ln_P(blink ? PSTR("> ad_") : PSTR("> ad "), false);
     } else if (layer_state_is(_RAISE)) {
         oled_write_ln_P(blink ? PSTR("> hi_") : PSTR("> hi "), false);
@@ -213,8 +216,6 @@ void render_status_secondary(void) {
     render_layer();
 
     oled_write_ln("", false);
-
-    render_keylogger_status();
     oled_write_ln("", false);
     oled_write_ln("", false);
 

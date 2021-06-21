@@ -19,10 +19,12 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, RGBRST };
 // #define CTL_SLSH MT(MOD_RCTL, KC_SLSH)
 
 #define CTL_SPC CTL_T(KC_SPC)
-#define LOW_ESC LT(_LOWER, KC_ESC)
+// #define LOW_ESC (_LOWER, KC_ESC)
+#define GUI_ESC GUI_T(KC_ESC)
 // #define RAI_EQ LT(_RAISE, KC_EQL)
 #define SFT_ENT SFT_T(KC_ENT)
 #define RAISE  MO(_RAISE)
+#define LOWER MO(_LOWER)
 #define LOW_BSP LT(_LOWER, KC_BSPC)
 #define LANG LCA(KC_SPC)
 #define CMD_SPC G(KC_SPC)
