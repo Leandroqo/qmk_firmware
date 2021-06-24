@@ -12,11 +12,11 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, RGBRST };
 // #define SFT_EQ MT(MOD_LSFT, KC_EQL)
 // #define SFT_QT MT(MOD_RSFT, KC_QUOT)
 
-// #define SFT_A MT(MOD_LSFT, KC_A)
-// #define CTL_Z MT(MOD_LCTL, KC_Z)
+#define SFT_A MT(MOD_LSFT, KC_A)
+#define CTL_Z MT(MOD_LCTL, KC_Z)
 
-// #define SFT_SCLN MT(MOD_RSFT, KC_SCLN)
-// #define CTL_SLSH MT(MOD_RCTL, KC_SLSH)
+#define SFT_SCLN MT(MOD_RSFT, KC_SCLN)
+#define CTL_SLSH MT(MOD_RCTL, KC_SLSH)
 
 #define CTL_SPC CTL_T(KC_SPC)
 // #define LOW_ESC (_LOWER, KC_ESC)
