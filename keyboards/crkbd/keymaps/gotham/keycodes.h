@@ -9,6 +9,10 @@ enum layers {
 
 enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, RGBRST };
 
+enum {
+  TD_CED, //cedilha
+};
+
 // #define SFT_EQ MT(MOD_LSFT, KC_EQL)
 // #define SFT_QT MT(MOD_RSFT, KC_QUOT)
 
@@ -42,7 +46,9 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, RGBRST };
 #define TER_R C(G(KC_RIGHT))
 #define TER_ML C(G(KC_L))
 #define TER_MB C(G(KC_B))
+#define SCR_SHOT G(S(KC_4))
 // #define LOW_DEL LT(_LOWER, KC_DEL)
+#define CTL_LANG MT(MOD_RCTL, LANG)
 // #define ADJ_GRV LT(_ADJUST, KC_GRV)
 // #define KC_ANGL LSFT(KC_COMM)
 // #define KC_ANGR LSFT(KC_DOT)

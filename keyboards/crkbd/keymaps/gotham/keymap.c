@@ -15,9 +15,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
      KC_TAB,      KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                       KC_Y,    KC_U,     KC_I,     KC_O,    KC_P,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_LSFT,    SFT_A,    KC_S,    KC_D,    KC_F,    KC_G,                       KC_H,    KC_J,    KC_K,    KC_L,  SFT_SCLN, KC_QUOT,
+     KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                       KC_H,    KC_J,    KC_K,    KC_L,  KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_LCTL,    CTL_Z,    KC_X,    KC_C,    KC_V,    KC_B,                       KC_N,    KC_M, KC_COMM,  KC_DOT,  CTL_SLSH,  LANG,
+     KC_LCTL,    KC_Z,    KC_X, TD(TD_CED),    KC_V,    KC_B,                       KC_N,    KC_M, KC_COMM,  KC_DOT,  KC_SLSH,  LANG,
   //---------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           GUI_ESC, LOWER, CTL_SPC,      SFT_ENT, RAISE, KC_RALT
                                       //|--------------------------|  |--------------------------|
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-       TER_MB, TER_UP,  TER_DW,   KC_NO,    KC_NO, RGB_TOG,                        KC_NO, KC_F12,  KC_F7,   KC_F8,    KC_F9,   XXXXXXX,\
+       TER_MB, TER_UP,  TER_DW, SCR_SHOT,    KC_NO, RGB_TOG,                        KC_NO, KC_F12,  KC_F7,   KC_F8,    KC_F9,   XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        TER_ML,  TER_L,   TER_R,   KC_NO,    KC_NO, RGB_MOD,                       KC_VOLU, KC_F11,  KC_F4,   KC_F5,   KC_F6,   RESET,  \
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -60,6 +60,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 // clang-format off
+
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_CED] = ACTION_TAP_DANCE_DOUBLE(KC_C, RALT(KC_C)),
+};
+
 
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
 layer_state_t layer_state_set_user(layer_state_t state) {
