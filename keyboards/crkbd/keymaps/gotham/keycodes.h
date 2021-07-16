@@ -9,10 +9,6 @@ enum layers {
 
 enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, RGBRST };
 
-enum {
-  TD_CED, //cedilha
-};
-
 // #define SFT_EQ MT(MOD_LSFT, KC_EQL)
 // #define SFT_QT MT(MOD_RSFT, KC_QUOT)
 
@@ -32,9 +28,9 @@ enum {
 #define LOW_BSP LT(_LOWER, KC_BSPC)
 #define LANG LCA(KC_SPC)
 #define CMD_SPC G(KC_SPC)
-#define TALL RSA(KC_A)
-#define WIDE RSA(KC_S)
-#define FULL RSA(KC_D)
+// #define TALL RSA(KC_A)
+// #define WIDE RSA(KC_S)
+// #define FULL RSA(KC_D)
 #define NAV_TL G(S(KC_LBRC))
 #define NAV_TR G(S(KC_RBRC))
 #define NAV_SL C(KC_LEFT)

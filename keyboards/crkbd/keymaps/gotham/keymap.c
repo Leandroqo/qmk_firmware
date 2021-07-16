@@ -17,7 +17,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                       KC_H,    KC_J,    KC_K,    KC_L,  KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_LCTL,    KC_Z,    KC_X, TD(TD_CED),    KC_V,    KC_B,                       KC_N,    KC_M, KC_COMM,  KC_DOT,  KC_SLSH,  LANG,
+     KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                       KC_N,    KC_M, KC_COMM,  KC_DOT,  KC_SLSH,  LANG,
   //---------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           GUI_ESC, LOWER, CTL_SPC,      SFT_ENT, RAISE, KC_RALT
                                       //|--------------------------|  |--------------------------|
@@ -27,9 +27,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
       KC_TILD,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      CMD_SPC,    TALL,    WIDE,    FULL,  NAV_TL,  NAV_TR,                      KC_LEFT, KC_DOWN,  KC_UP, KC_RIGHT,   KC_NO, _______,
+      CMD_SPC,   KC_NO,    KC_NO,  KC_NO,  NAV_TL,  NAV_TR,                      KC_LEFT, KC_DOWN,  KC_UP, KC_RIGHT,   KC_NO, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        CMD_9,   KC_NO,   KC_NO,   KC_NO,  NAV_SL,  NAV_SR,                        KC_NO,   KC_NO,  KC_NO,   KC_NO,    KC_NO,   KC_NO, 
+        CMD_9,   KC_NO,   KC_NO,RALT(KC_C),  NAV_SL,  NAV_SR,                        KC_NO,   KC_NO,  KC_NO,   KC_NO,    KC_NO,   KC_NO, 
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          _______, _______, _______,    _______, MO(_ADJUST), KC_LGUI
                                       //|--------------------------|  |-------------------------------|
@@ -60,11 +60,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 // clang-format off
-
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_CED] = ACTION_TAP_DANCE_DOUBLE(KC_C, RALT(KC_C)),
-};
 
 
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
