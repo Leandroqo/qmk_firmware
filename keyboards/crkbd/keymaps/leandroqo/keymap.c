@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
       KC_TILD,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,   KC_NO,    OPT_L,  OPT_R,  NAV_TL,  NAV_TR,                      KC_LEFT, KC_DOWN,  KC_UP, KC_RIGHT,   KC_NO,  KC_RSFT,
+      KC_LSFT, KC_BSPC,    OPT_L,  OPT_R,  NAV_TL,  NAV_TR,                      KC_LEFT, KC_DOWN,  KC_UP, KC_RIGHT,   KC_NO,  KC_RSFT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       CMD_SPC,   KC_NO,   KC_NO,RALT(KC_C),  NAV_SL,  NAV_SR,                      KC_NO,   KC_NO,  KC_NO,   KC_NO,    KC_NO,    LANG, 
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -49,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_split_3x6_3(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-    QWERTY,   DVORAK,  TER_DW,  SCR_SHOT,   KC_NO, RGB_TOG,                      KC_NO, KC_F12,  KC_F7,   KC_F8,    KC_F9,   XXXXXXX,\
+    QWERTY,   DVORAK,  KC_NO,  SCR_SHOT,   DM_REC1, DM_REC2,                      KC_NO, KC_F12,  KC_F7,   KC_F8,    KC_F9,   XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       TER_ML,  TER_L,   TER_R,   KC_NO,    KC_NO, RGB_MOD,                       KC_VOLU, KC_F11,  KC_F4,   KC_F5,   KC_F6,   QK_RBT,  \
+       KC_NO,  KC_NO,   KC_NO,   KC_NO,    DM_PLY1, DM_PLY2,                       KC_VOLU, KC_F11,  KC_F4,   KC_F5,   KC_F6,   QK_RBT,  \
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      XXXXXXX,   KC_NO,    KC_NO,   KC_NO,    KC_NO, RGBRST,                       KC_VOLD, KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
