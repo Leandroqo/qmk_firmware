@@ -1,5 +1,9 @@
 #include QMK_KEYBOARD_H
+#include "version.h"
+#include "keymap_spanish.h"
 #include "keycodes.h"
+
+enum keycodes { NAME = SAFE_RANGE };
 
 #ifdef OLED_ENABLE
 #    include "oled.c"
@@ -49,9 +53,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_split_3x6_3(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-    QWERTY,   DVORAK,  KC_NO,  SCR_SHOT,   DM_REC1, DM_REC2,                      KC_NO, KC_F12,  KC_F7,   KC_F8,    KC_F9,   XXXXXXX,\
+    KC_NO,    KC_NO,  SCR_SHOT,  KC_MS_U, KC_BTN1,    NAME,                     KC_NO, KC_F12,  KC_F7,   KC_F8,    KC_F9,   XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_NO,  KC_NO,   KC_NO,   KC_NO,    DM_PLY1, DM_PLY2,                       KC_VOLU, KC_F11,  KC_F4,   KC_F5,   KC_F6,   QK_RBT,  \
+       KC_NO,  KC_NO,  KC_MS_L,   KC_MS_D, KC_MS_R, DM_PLY2,                       KC_VOLU, KC_F11,  KC_F4,   KC_F5,   KC_F6,   QK_RBT,  \
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      XXXXXXX,   KC_NO,    KC_NO,   KC_NO,    KC_NO, RGBRST,                       KC_VOLD, KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -59,22 +63,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //|--------------------------|  |--------------------------|
   ),
 
-  [_DVORAK] = LAYOUT_split_3x6_3(
-  //|-----------------------------------------------------|                    |-----------------------------------------------------|
-     KC_TAB,   KC_SLSH, KC_COMM,  KC_DOT,    KC_P,    KC_Y,                       KC_F,    KC_G,     KC_C,     KC_R,  KC_L,  KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_LSFT,    KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                       KC_D,    KC_H,    KC_T,    KC_N,   KC_S,    SFT_QUOT,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_LCTL, KC_SCLN,   KC_Q,    KC_J,    KC_K,      KC_X,                     KC_B,      KC_M,    KC_W,     KC_V,   KC_Z,    KC_RCTL,
-  //---------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          GUI_ESC, LOWER, SFT_SPC,      KC_ENT, RAISE, KC_RALT
-                                      //|--------------------------|  |--------------------------|
-  ),
-
 };
+
+
 // clang-format off
-
-
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
 layer_state_t layer_state_set_user(layer_state_t state) {
     /* For any layer other than default, save current RGB state and switch to layer-based RGB */
@@ -120,6 +112,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_off(_ADJUST);
             }
             return false;
+        case NAME:
+            if (record->event.pressed) {
+                SEND_STRING("Leandro Queiroz");
+            }
+            return false;
+
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
         case RGB_MOD:
         case RGB_TOG:
@@ -154,3 +152,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+

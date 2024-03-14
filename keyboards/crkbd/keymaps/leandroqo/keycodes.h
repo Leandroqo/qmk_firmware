@@ -4,11 +4,10 @@ enum layers {
     _QWERTY,
     _LOWER,
     _RAISE,
-    _ADJUST,
-    _DVORAK
+    _ADJUST
 };
 
-enum custom_keycodes { QWERTY, LOWER, RAISE, ADJUST, RGBRST, DVORAK };
+enum custom_keycodes { QWERTY, LOWER, RAISE, ADJUST, RGBRST };
 
 #define SFT_A MT(MOD_LSFT, KC_A)
 #define CTL_Z MT(MOD_LCTL, KC_Z)
@@ -23,7 +22,6 @@ enum custom_keycodes { QWERTY, LOWER, RAISE, ADJUST, RGBRST, DVORAK };
 #define RAISE  MO(_RAISE)
 #define LOWER MO(_LOWER)
 #define QWERTY TG(_QWERTY)
-#define DVORAK TG(_DVORAK)
 #define LOW_BSP LT(_LOWER, KC_BSPC)
 #define LANG LCA(KC_SPC)
 #define CMD_SPC G(KC_SPC)
